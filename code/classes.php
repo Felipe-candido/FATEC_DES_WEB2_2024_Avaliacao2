@@ -53,12 +53,25 @@ class Cadastro
             if(isset($_POST['nome']) && isset($_POST['curso'])) 
             {
                 if($curso == 1 || $curso == 2){
+                    // CODIGO PARA PEGAR O ULTIMO ID DA TABELA
+                    $sql_id = "SELECT id FROM candidatos ORDER BY id DESC LIMIT 1";
+                    $id_encontrado = $this->conexao->query($sql_id);
+                    $result_id = $id_encontrado->fetch(PDO::FETCH_ASSOC);
+
+                    if ($result_id) {
+                        // Se houver um resultado, obtenha o ID e incremente-o
+                        $id = $result_id['id'] + 1;
+                    } else {
+                        // Se não houver resultados, comece com o ID 1
+                        $id = 1;
+                    }
                     // CÓDIGO PARA INSERIR OS DADOS NO BANCO
                     $nome = $_POST['nome'];
                     $curso = $_POST['curso'];
                     $sql = "INSERT INTO candidatos (nome, curso) 
                     VALUES ('$nome', '$curso')";
                     $this->conexao->exec($sql);
+                    $id_encontrado->fetchAll();
                 }
             }
         }
