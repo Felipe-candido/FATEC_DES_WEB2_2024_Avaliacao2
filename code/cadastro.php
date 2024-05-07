@@ -15,7 +15,7 @@ $validador->verificar_logado();
 <body>
     <div class="container">
         <div class="box"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Logo_fatec_araras.png" alt=""><h2 class="textlogin">CADASTRE-SE</h2>
-        <form action="cadastro.php" method="POST" onsubmit="return validarForm(event)">
+        <form id="cadastro" action="cadastro.php" method="POST" onsubmit="return validarForm(event)">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" placeholder="Insira seu nome"required><br><br>
@@ -37,9 +37,8 @@ $validador->verificar_logado();
         // FUNÇÃO PARA VALIDAR O PREENCHIMENTO E ENVIO DO FORMULÁRIO //
         function validarForm(event){
             var form = document.getElementById('cadastro');
-            var nome = document.getElementById('NOME').value.trim();
-            var ra = document.getElementById('RA').value.trim();
-            var placa = document.getElementById('PLACA').value.trim();
+            var nome = document.getElementById('nome').value.trim();
+            var curso = document.getElementById('curso').value.trim();
             
             // VERIFICA SE HÁ ALGUM CAMPO VAZIO // 
             if(nome.trim() === '' || ra.trim() === '' || placa.trim() === ''){
