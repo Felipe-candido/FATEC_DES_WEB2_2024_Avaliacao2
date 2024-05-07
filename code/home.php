@@ -19,6 +19,10 @@ $validador->verificar_logado();
     <center>
         <a href="cadastro.php">Cadastrar candidato</a>
     </center>
+
+    <center>
+        <a href="mostrar.php">Mostrar candidatos</a>
+    </center>
     
     <br>
     

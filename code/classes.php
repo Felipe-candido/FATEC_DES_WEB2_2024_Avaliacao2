@@ -68,9 +68,10 @@ class Cadastro
                     // CÓDIGO PARA INSERIR OS DADOS NO BANCO
                     $nome = $_POST['nome'];
                     $curso = $_POST['curso'];
-                    $sql = "INSERT INTO candidatos (nome, curso) 
-                    VALUES ('$nome', '$curso')";
+                    $sql = "INSERT INTO candidatos (nome, curso, id) 
+                    VALUES ('$nome', '$curso', '$id')";
                     $this->conexao->exec($sql);
+
                     $id_encontrado->fetchAll();
                 }
             }
@@ -80,6 +81,32 @@ class Cadastro
         }
 
         $this->conexao = null;
+    }
+
+
+    // METODO PARA ACESSAR OS CADASTROS
+    public function mostrar_cadastros()
+    {
+        try
+        {
+            $sql = "SELECT * FROM candidatos";
+            $mostar = $this->conexao->query($sql);
+            $cadastros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($cadastros) {
+                foreach ($cadastros as $cadastro) {
+                    echo "ID: " . $cadastro['id'] . "<br>";
+                    echo "Nome: " . $cadastro['nome'] . "<br>";
+                    echo "Curso: " . $cadastro['curso'] . "<br><br>";
+                    echo "=========";
+                }
+            } else {
+                echo "Não há cadastros.";
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }
 
