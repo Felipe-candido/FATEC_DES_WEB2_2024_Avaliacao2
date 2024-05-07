@@ -53,15 +53,16 @@ $validador->verificar_logado();
 <?php
 
 if(isset($_POST['nome']) && isset($_POST['curso'])) {
-    // Inclui o arquivo da classe Cadastro
     include_once 'classes.php';
 
-    // Obtém os dados do formulário
+    // OBTÉM OS DADOS DO FORMULÁRIO
     $nome = $_POST['nome'];
     $curso = $_POST['curso'];
 
-    // Instancia a classe Cadastro e insere os dados no banco de dados
+    // INSTANCIA A CLASSE CADASTRO
     $cadastro = new Cadastro($nome, $curso);
+    
+    header('location: home.php');
 }
 ?>
 
