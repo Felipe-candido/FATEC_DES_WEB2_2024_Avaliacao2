@@ -15,6 +15,10 @@ $validador->verificar_logado();
     <center>
         <h2>Cadastro do Vestibular</h2>
     </center>
+
+    <center>
+        <a href="cadastro.php">Cadastrar candidato</a>
+    </center>
     
     <br>
     
