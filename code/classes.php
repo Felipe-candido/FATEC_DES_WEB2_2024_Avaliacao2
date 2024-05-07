@@ -36,6 +36,7 @@ class Cadastro
 {
     public $nome;
     public $curso;
+    public $id;
     public $conexao;
     private $host = "localhost";
     private $nome_banco = "vestibular";
@@ -60,27 +61,38 @@ class Cadastro
 
                     if ($result_id) {
                         // Se houver um resultado, obtenha o ID e incremente-o
-                        $id = $result_id['id'] + 1;
+                        $this->id = $result_id['id'] + 1;
                     } else {
                         // Se não houver resultados, comece com o ID 1
-                        $id = 1;
+                        $this->id = 1;
                     }
-                    // CÓDIGO PARA INSERIR OS DADOS NO BANCO
-                    $nome = $_POST['nome'];
-                    $curso = $_POST['curso'];
-                    $sql = "INSERT INTO candidatos (nome, curso, id) 
-                    VALUES ('$nome', '$curso', '$id')";
-                    $this->conexao->exec($sql);
-
                     $id_encontrado->fetchAll();
+                    
+                    // CÓDIGO PARA RECEBER AS VARIAVEIS DO USUÁRIO
+                    $this->nome = $_POST['nome'];
+                    $this->curso = $_POST['curso'];
                 }
             }
         }
         catch(PDOException $e){
             echo $e->getMessage();
         }
+    }
 
-        $this->conexao = null;
+    public function insert()
+    {
+        try{
+            // CÓDIGO SQL PARA INSERIR OS DADOS NO BANCO
+            $sql = "INSERT INTO candidatos (nome, curso, id) 
+            VALUES ('$this->nome', '$this->curso', '$this->id')";
+
+            $this->conexao->exec($sql);
+        }
+        
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        
     }
 
 
