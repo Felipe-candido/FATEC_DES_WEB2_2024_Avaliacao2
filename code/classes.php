@@ -81,6 +81,11 @@ class Cadastro
         }
     }
 
+    public function __destruct()
+    {
+        $this->conexao = null;
+    }
+
     public function insert()
     {
         try{
