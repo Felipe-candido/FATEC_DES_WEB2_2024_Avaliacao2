@@ -43,10 +43,11 @@ class Cadastro
     private $user = "root";
     private $senha = "";
 
-    public function __construct($nome, $curso)
+    public function __construct($nome = null, $curso = null)
     {
         try
         {
+            // REALIZA A CONEXÃO COM O BANCO UTILIZANDO PDO
             $this->conexao = new PDO("mysql:host=$this->host;dbname=$this->nome_banco;",$this->user,$this->senha);
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -73,6 +74,7 @@ class Cadastro
                     $this->curso = $_POST['curso'];
                 }
             }
+
         }
         catch(PDOException $e){
             echo $e->getMessage();
@@ -82,6 +84,7 @@ class Cadastro
     public function insert()
     {
         try{
+            
             // CÓDIGO SQL PARA INSERIR OS DADOS NO BANCO
             $sql = "INSERT INTO candidatos (nome, curso, id) 
             VALUES ('$this->nome', '$this->curso', '$this->id')";
@@ -102,24 +105,14 @@ class Cadastro
         try
         {
             $sql = "SELECT * FROM candidatos";
-            $mostar = $this->conexao->query($sql);
-            $cadastros = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ($cadastros) {
-                foreach ($cadastros as $cadastro) {
-                    echo "ID: " . $cadastro['id'] . "<br>";
-                    echo "Nome: " . $cadastro['nome'] . "<br>";
-                    echo "Curso: " . $cadastro['curso'] . "<br><br>";
-                    echo "=========";
-                }
-            } else {
-                echo "Não há cadastros.";
-            }
+            $mostrar = $this->conexao->query($sql);
+            $cadastros = $mostrar->fetchAll(PDO::FETCH_ASSOC);
+            return $cadastros;
+            
         }
         catch(PDOException $e){
             echo $e->getMessage();
         }
     }
 }
-
 ?>

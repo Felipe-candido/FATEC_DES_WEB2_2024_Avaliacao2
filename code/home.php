@@ -21,7 +21,7 @@ $validador->verificar_logado();
     </center>
 
     <center>
-        <a href="mostrar.php">Mostrar candidatos</a>
+        <a href="mostrar_cadastro.php">Mostrar candidatos</a>
     </center>
     
     <br>

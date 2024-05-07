@@ -19,12 +19,10 @@ $validador->verificar_logado();
         <label for="nome" class="sr-only">Nome</label>
         <input type="text" id="nome" name="nome" class="form-control" placeholder="Insira seu nome"required>
         <label for="curso" class="sr-only">Curso (DSM=1 || GE=2)</label>
-        <input type="text" id="curso" name="curso" class="form-control" placeholder="Numero do seu curso"required>
+        <input type="text" id="curso" name="curso" class="form-control" placeholder="Numero do seu curso (DSM=1 || GE=2)"required>
         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
         <a class="btn btn-lg btn-primary btn-block" href="home.php">Voltar</a>
     </form>
-    
-    
 </body>
 </html>
 
