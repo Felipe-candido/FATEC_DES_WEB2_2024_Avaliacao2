@@ -83,7 +83,7 @@ class Cadastro
 
     public function __destruct()
     {
-        $this->conexao = null;
+        $this->conexao = NULL;
     }
 
     public function insert()
