@@ -56,7 +56,8 @@ if(isset($_POST['nome']) && isset($_POST['curso'])) {
     $cadastro = new Cadastro($nome, $curso);
     // INSERE O OBJETO NO BANCO DE DADOS
     $cadastro->insert();
-    // VOLTA PARA A PÁGINA INICIAL
+    // VOLTA PARA A PÁGINA INICIAL E FECHA A CONEXÃO COM O BANCO
+    unset($cadastro);
     header('location: home.php');
 }
 ?>
