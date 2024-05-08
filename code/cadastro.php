@@ -52,9 +52,9 @@ if(isset($_POST['nome']) && isset($_POST['curso'])) {
     $curso = $_POST['curso'];
 
     // INSTANCIA A CLASSE CADASTRO
-    $cadastro = new Cadastro($nome, $curso);
+    $cadastro = new Cadastro();
     // INSERE O OBJETO NO BANCO DE DADOS
-    $cadastro->insert();
+    $cadastro->insert($nome, $curso);
     // VOLTA PARA A PÁGINA INICIAL E FECHA A CONEXÃO COM O BANCO
     unset($cadastro);
     header('location: home.php');

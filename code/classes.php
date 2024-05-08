@@ -51,6 +51,21 @@ class Cadastro
             $this->conexao = new PDO("mysql:host=$this->host;dbname=$this->nome_banco;",$this->user,$this->senha);
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        }
+        
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function __destruct()
+    {
+        $this->conexao = NULL;
+    }
+
+    public function insert($nome, $curso)
+    {
+        try{
             // CÓDIGO PARA VALIDAR OS CAMPOS DO CADASTRO
             if(isset($_POST['nome']) && isset($_POST['curso'])) 
             {
@@ -74,21 +89,6 @@ class Cadastro
                     $this->curso = $_POST['curso'];
                 }
             }
-
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
-
-    public function __destruct()
-    {
-        $this->conexao = NULL;
-    }
-
-    public function insert()
-    {
-        try{
             
             // CÓDIGO SQL PARA INSERIR OS DADOS NO BANCO
             $sql = "INSERT INTO candidatos (nome, curso, id) 
